@@ -1,16 +1,17 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse("Hola mundo desde index.")
+    return render(request, 'crud/index.html')
 
 
-def viaje(request):
-    return HttpResponse("Hola mundo desde viaje.")
+def viajes(request):
+    return render(request, 'crud/viajes.html')
 
 
 def verViaje(request):
-    return HttpResponse("Hola mundo desde verViaje.")
+    return render(request, 'crud/verViajes.html')
 
 
 def editarViaje(request):
