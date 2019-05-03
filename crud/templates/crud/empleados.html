@@ -1,0 +1,173 @@
+{% load static %}
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="{% static 'crud/style.css' %}">      
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ver Empleados</title>
+      
+    </head>
+
+    <body>
+            <!--BARRA Y MENÚ-->
+            <div class="navbar-fixed">
+                    <nav class="grey darken-4">
+                        <div class="container section">
+                            <div class="div-wrapper">
+                                <a href="#" class="brand-logo center">Ver Empleados</a>
+                                <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                                    <i class="material-icons">menu</i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <ul class="sidenav" id="menu-side">
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                <img src="../../static/images/bg1.jpg" alt="">
+                            </div>
+                            <a href="#" >
+                                <img src="../../static/images/user.png" alt="" class="circle">
+                            </a>
+                            <a href = "">
+                                <span class="name white-text">Sthefania Continelli</span>
+                            </a>
+                            <a href = "">
+                                <span class="email white-text">sthefaniaco@trasportadora.com</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8000/">
+                            <i class="material-icons">navigation</i>
+                            Viajes
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="verViajes.html">
+                                    <i class="material-icons">visibility</i>
+                                    Ver Viajes
+                                </a>  
+                            </li>
+                            <li>
+                                <a href="agregarViaje.html">
+                                    <i class="material-icons">add_circle</i>
+                                    Agregar Viaje
+                                </a>  
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">face</i>
+                            Empleados
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <i class="material-icons">visibility</i>
+                                    Ver Empleados
+                                </a>  
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="material-icons">add_circle</i>
+                                    Agregar Empleado
+                                </a>  
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">directions_bus</i>
+                            Vehículos
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <i class="material-icons">visibility</i>
+                                    Ver Vehículos
+                                </a>  
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="material-icons">add_circle</i>
+                                    Agregar Vehículo
+                                </a>  
+                            </li>
+                            <li>
+                                    <a href="">
+                                        <i class="material-icons">show_chart</i>
+                                        Estadísticas
+                                    </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="wrapper">
+                    <!--Barra de Busqueda-->
+                    <div class="caja1">
+                        <div class="search-box">
+                            <input class = "search-txt" type="text" name="" placeholder="Buscar ...">
+                            <a class="search-btn" href="#">
+                            </a>
+                        </div>
+                    </div>
+                
+                    <!--DIV para la tabla-->
+                    <div class="workspace">
+                        <table class="striped green lighten-2 highlight">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Documento</th>
+                                <th>Cargo</th>
+                                <th>Fecha de Nacimiento</th>
+                            </tr>
+                            </thead>
+                    
+                            <tbody>
+                            <tr>
+                                <td>0001</td>
+                                <td>Bogotá - Cali</td>
+                                <td>Pepito Peréz</td>
+                                <td>VEH-123</td>
+                                <td>Cemento</td>
+                            </tr>
+                            <tr>
+                                <td>0002</td>
+                                <td>Tunja - Villavicencio</td>
+                                <td>Andrés Díaz</td>
+                                <td>HEV-321</td>
+                                <td>Flores</td>
+                            </tr>
+                            <tr>
+                                <td>0003</td>
+                                <td>Cartagena - Paipa</td>
+                                <td>Lina Rodriguez</td>
+                                <td>ABC-251</td>
+                                <td>Construcción</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+        <!--JavaScript at end of body for optimized loading-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        </script>        
+    </body>
