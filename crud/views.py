@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import verViajes
 
 
 def index(request):
@@ -7,7 +8,9 @@ def index(request):
 
 
 def viajes(request):
-    return render(request, 'crud/viajes.html')
+    viajes = verViajes()
+    context = {'Lista': viajes}
+    return render(request, 'crud/viajes.html', context)
 
 
 def verViaje(request):
