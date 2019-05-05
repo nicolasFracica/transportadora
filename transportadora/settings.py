@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'transportadora',
         'USER': 'root',
-        'PASSWORD': 'DarkFuneral2018',
+        'PASSWORD': 'Sergiop9', # Cambiar a clave propia. Original: DarkFuneral2018
         'PORT': ''
     }
 }

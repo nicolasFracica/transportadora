@@ -1,5 +1,20 @@
 from django.db import connection
 
+def metodoquery():
+    query = """
+
+
+
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
+    return row
+
+
+
+
 
 def verViajes():
     query = """
@@ -15,4 +30,26 @@ def verViajes():
         cursor.execute(query)
         row = cursor.fetchall()
 
+    return row
+
+def getEmpleados():
+    query = """
+    Select e.nombre
+    from empleado e
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
+    return row
+
+def getCiudades():
+    query = """
+    Select c.nombre
+    from ciudad c
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+        
     return row
