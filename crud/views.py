@@ -1,6 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+<<<<<<< HEAD
 from .models import verViajes, verEmpleados, verVehiculos
+=======
+from .models import *
+>>>>>>> 5e582c4e2841f760203a356eea5d1e6be0557295
 
 
 def index(request):
@@ -22,7 +26,11 @@ def editarViaje(request):
 
 
 def agregarViaje(request):
-    return HttpResponse("Hola mundo desde agregarViaje.")
+    empleados = getEmpleados()
+    ciudades = getCiudades()
+    contextCi = {'Ciudades': ciudades}
+    contextEm = {'Empleados': empleados}
+    return render(request, 'crud/agregarViaje.html', contextCi, contextEm)
 
 
 def empleados(request):
