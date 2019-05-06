@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import verViajes
+from .models import verViajes, verEmpleados, verVehiculos
 
 
 def index(request):
@@ -25,8 +25,10 @@ def agregarViaje(request):
     return HttpResponse("Hola mundo desde agregarViaje.")
 
 
-def empleado(request):
-    return HttpResponse("hola mundo desde empleado")
+def empleados(request):
+    empleados = verEmpleados()
+    context = {'Lista': empleados}
+    return render(request, 'crud/empleados.html', context)
 
 
 def verEmpleado(request):
@@ -41,8 +43,10 @@ def agregarEmpleado(request):
     return HttpResponse("Hola mundo desde agregarEmpleado.")
 
 
-def vehiculo(request):
-    return HttpResponse("Hola mundo desde vehiculo.")
+def vehiculos(request):
+    vehiculos = verVehiculos()
+    context = {'Lista': vehiculos}
+    return render(request, 'crud/vehiculos.html', context)
 
 
 def verVehiculo(request):
