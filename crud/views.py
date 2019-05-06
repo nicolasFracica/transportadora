@@ -1,10 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-<<<<<<< HEAD
-from .models import verViajes, verEmpleados, verVehiculos
-=======
 from .models import *
->>>>>>> 5e582c4e2841f760203a356eea5d1e6be0557295
 
 
 def index(request):

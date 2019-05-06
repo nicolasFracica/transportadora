@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib as plt
 
+
 def metodoquery():
     query = """
 
@@ -14,9 +15,6 @@ def metodoquery():
         row = cursor.fetchall()
 
     return row
-
-
-
 
 
 def verViajes():
@@ -37,18 +35,11 @@ def verViajes():
 
     return row
 
-<<<<<<< HEAD
 
 def verEmpleados():
     query = """
         SELECT Empleado.idEmpleado, Empleado.nombre, Empleado.documento, Cargo.nombre, Empleado.fechaNacimiento
         FROM Empleado INNER JOIN Cargo ON Empleado.idCargo = Cargo.idCargo;
-=======
-def getEmpleados():
-    query = """
-    Select e.nombre
-    from empleado e
->>>>>>> 5e582c4e2841f760203a356eea5d1e6be0557295
     """
     with connection.cursor() as cursor:
         cursor.execute(query)
@@ -56,7 +47,6 @@ def getEmpleados():
 
     return row
 
-<<<<<<< HEAD
 
 def verVehiculos():
     query = """
@@ -67,19 +57,32 @@ def verVehiculos():
         INNER JOIN Tipo_de_mantenimiento 
         ON Tipo_de_mantenimiento.idTipoDeMantenimiento = Tipo_mantenimiento.id_tipo
         ORDER BY Vehiculo.idVehiculo ASC;
-=======
-def getCiudades():
-    query = """
-    Select c.nombre
-    from ciudad c
->>>>>>> 5e582c4e2841f760203a356eea5d1e6be0557295
     """
     with connection.cursor() as cursor:
         cursor.execute(query)
         row = cursor.fetchall()
-<<<<<<< HEAD
+    return row
 
-=======
-        
->>>>>>> 5e582c4e2841f760203a356eea5d1e6be0557295
+
+def getEmpleados():
+    query = """
+        Select e.nombre
+        from empleado e
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
+    return row
+
+
+def getCiudades():
+    query = """
+        Select c.nombre
+        from ciudad c
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
     return row
