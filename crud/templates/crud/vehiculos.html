@@ -53,7 +53,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="verViajes.html">
+                                <a href="http://localhost:8000/viajes">
                                     <i class="material-icons">visibility</i>
                                     Ver Viajes
                                 </a>  
@@ -67,17 +67,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="http://localhost:8000/empleados">
                             <i class="material-icons">face</i>
                             Empleados
                         </a>
                         <ul>
-                            <li>
-                                <a href="">
-                                    <i class="material-icons">visibility</i>
-                                    Ver Empleados
-                                </a>  
-                            </li>
                             <li>
                                 <a href="">
                                     <i class="material-icons">add_circle</i>
@@ -92,12 +86,6 @@
                             Vehículos
                         </a>
                         <ul>
-                            <li>
-                                <a href="">
-                                    <i class="material-icons">visibility</i>
-                                    Ver Vehículos
-                                </a>  
-                            </li>
                             <li>
                                 <a href="">
                                     <i class="material-icons">add_circle</i>
@@ -117,7 +105,7 @@
                     <!--Barra de Busqueda-->
                     <div class="caja1">
                         <div class="search-box">
-                            <input class = "search-txt" type="text" name="" placeholder="Buscar ...">
+                            <input class = "search-txt" type="text" name="" placeholder="Buscar ..." id="filterInput">
                             <a class="search-btn" href="#">
                             </a>
                         </div>
@@ -135,25 +123,16 @@
                             </tr>
                             </thead>
                     
-                            <tbody>
-                            <tr>
-                                <td>0001</td>
-                                <td>Bogotá - Cali</td>
-                                <td>Pepito Peréz</td>
-                                <td>VEH-123</td>
-                            </tr>
-                            <tr>
-                                <td>0002</td>
-                                <td>Tunja - Villavicencio</td>
-                                <td>Andrés Díaz</td>
-                                <td>HEV-321</td>
-                            </tr>
-                            <tr>
-                                <td>0003</td>
-                                <td>Cartagena - Paipa</td>
-                                <td>Lina Rodriguez</td>
-                                <td>ABC-251</td>
-                            </tr>
+                            <tbody id="names">
+                                {% for i in Lista %}
+                                <tr>
+                                    <td>{{ i.0 }}</td>
+                                    <td>{{ i.1 }}</td>
+                                    <td>{{ i.2 }}</td>
+                                    <td>{{ i.3 }}</td>
+                                    <td>{{ i.4 }}</td>
+                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -165,5 +144,38 @@
             
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
+
+            //Filtro del buscador
+            let filterInput = document.getElementById('filterInput');
+            filterInput.addEventListener('keyup', filterNames);
+
+            function filterNames() {
+                let filterValue = document.getElementById('filterInput').value.toUpperCase();
+                let names = document.getElementById('names');
+                let li = names.querySelectorAll('tr');
+                console.log(li);
+                for (let i = 0; i < li.length; i++) {
+                    let a = li[i].getElementsByTagName('td')[0];
+                    let b = li[i].getElementsByTagName('td')[1];
+                    let c = li[i].getElementsByTagName('td')[2];
+                    let d = li[i].getElementsByTagName('td')[3];
+
+                    if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                        li[i].style.display = '';
+                    }
+                    else if (b.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                        li[i].style.display = '';
+                    }
+                    else if (c.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                        li[i].style.display = '';
+                    }
+                    else if (d.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                        li[i].style.display = '';
+                    }
+                    else {
+                        li[i].style.display = 'none';
+                    }
+                }
+            }
         </script>        
     </body>

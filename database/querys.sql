@@ -6,3 +6,20 @@ INNER JOIN viaje_vehiculo ON viaje_vehiculo.idViaje = Viaje.idViaje
 INNER JOIN Vehiculo ON Vehiculo.idVehiculo = viaje_vehiculo.idVehiculo
 INNER JOIN Vehiculo_empleado ON Vehiculo.idVehiculo = Vehiculo_empleado.idVehiculo
 INNER JOIN Empleado ON Empleado.idEmpleado = Vehiculo_empleado.idEmpleado;
+
+
+--Ver todos los empleados
+
+SELECT Empleado.idEmpleado, Empleado.nombre, Empleado.documento, Cargo.nombre, Empleado.fechaNacimiento
+FROM Empleado INNER JOIN Cargo ON Empleado.idCargo = Cargo.idCargo;
+
+
+--Ver todos los vehículos
+
+SELECT Vehiculo.idVehiculo, Vehiculo.modelo, Vehiculo.placa, Tipo_de_mantenimiento.nombre
+FROM Vehiculo INNER JOIN Vehiculo_mantenimiento 
+ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo INNER JOIN Tipo_mantenimiento
+ON Vehiculo_mantenimiento.id_mantenimiento = Tipo_mantenimiento.id_mantenimiento
+INNER JOIN Tipo_de_mantenimiento 
+ON Tipo_de_mantenimiento.idTipoDeMantenimiento = Tipo_mantenimiento.id_tipo
+ORDER BY Vehiculo.idVehiculo ASC;
