@@ -4,7 +4,9 @@ from .models import *
 
 
 def index(request):
-    return render(request, 'crud/index.html')
+    viajes = verViajes()
+    context = {'Lista': viajes[-6:]}
+    return render(request, 'crud/index.html', context)
 
 
 def viajes(request):

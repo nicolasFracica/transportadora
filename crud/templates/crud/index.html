@@ -1,5 +1,4 @@
-
-    <head>
+<head>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -26,7 +25,7 @@
             .nested{
             display:grid;
             grid-template-columns: 2fr 1fr;
-            grid-auto-rows: 70px;
+            grid-auto-rows: 200px;
             grid-gap:1em;
             grid-auto-rows: minmax(100px, auto);
             }
@@ -41,7 +40,7 @@
             }
 
             .nested > div{
-            /*border:#333 1px solid;*/
+            /border:#333 1px solid;/
             padding:1em;
             }
 
@@ -74,45 +73,12 @@
             align-items: center; 
             justify-content: center;   
             }
-            /*
-            .search-box{
-                position: absolute;
-                top: 50%;
-                left: 85%;
-                transform: translate(-50%,-50%);
-                background: #2f3640;
-                height: 40px;
-                border-radius: 40px;
-                padding: 10 px;
-
-            }
-            .search-btn{
-                color: #e84118;
-                float: right;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: #2f3640;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-            }
-
-            .search-txt{
-                border: none;
-                background: none;
-                outline: none;
-                float: left;
-                padding: 0;
-                color: white;
-                font-size: 16px;
-                transition: 0.4s;
-            }*/
+            
         </style>
     </head>
 
     <body>
+        <header>
         <div class="navbar-fixed">
             <nav class="grey darken-4">
                 <div class="container section">
@@ -184,6 +150,7 @@
                 </a>
                 <ul>
                     <li>
+                    <li>
                         <a href="">
                             <i class="material-icons">add_circle</i>
                             Agregar Vehículo
@@ -198,104 +165,27 @@
                 </ul>
             </li>
         </ul>
+    </header>
+
+    <!--CONTENIDO-->
+    <section>
                 <div class="wrapper">
-                    <div class="agregar_viaje">
-                        <a href="">
-                            <i class="large material-icons agregar">add_circle</i>
-                            
-                        </a> 
-                    </div>
-                    <div class="nested">
-                            <div>
-                                    <p>Código de viaje: 5</p>
+                    {% for i in Lista %}
+                        <div class="nested">
+                                <div>
+                                    <p>Código de viaje: {{i.0}}</p>
                                     <h6>Ruta</h6>
-                                    <p>Bogotá - Cartagena</p>
+                                    <p>{{i.1}}</p>
                                     <h6>Conductor</h6>
-                                    <p>Armando Casas</p>
+                                    <p>{{i.2}}</p>
                                     <h6>Placa Vehículo</h6>
-                                    <p>VEH - 123</p>
-                            </div>
-                            <div class="mas_info">
-                                    <a href="">
-                                            <i class="large material-icons ampliar_info">keyboard_arrow_right</i>
-                                            
-                                    </a>
-                            </div>
-                            
-                    </div>
-                    <div class="nested">
-                      <div>
-                            <p>Código de viaje: 4</p>
-                            <h6>Ruta</h6>
-                            <p>Bogotá - Cartagena</p>
-                            <h6>Conductor</h6>
-                            <p>Armando Casas</p>
-                            <h6>Placa Vehículo</h6>
-                            <p>VEH - 123</p>
-                      </div>
-                      <div class="mas_info">
-                            <a href="">
-                                    <i class="large material-icons ampliar_info">keyboard_arrow_right</i>
-                                    
-                            </a>
-                    </div>
-                      
-                    </div>
-                    <div class="nested">
-                            <div>
-                                <p>Código de viaje: 3</p>
-                                <h6>Ruta</h6>
-                                <p>Bogotá - Cartagena</p>
-                                <h6>Conductor</h6>
-                                <p>Armando Casas</p>
-                                <h6>Placa Vehículo</h6>
-                                <p>VEH - 123</p>
-                            </div>
-                            <div class="mas_info">
-                                    <a href="">
-                                            <i class="large material-icons ampliar_info">keyboard_arrow_right</i>
-                                            
-                                    </a>
-                            </div>
-                            
-                    </div>
-                    <div class="nested">
-                            <div>
-                                <p>Código de viaje: 2</p>
-                                <h6>Ruta</h6>
-                                <p>Bogotá - Cartagena</p>
-                                <h6>Conductor</h6>
-                                <p>Armando Casas</p>
-                                <h6>Placa Vehículo</h6>
-                                <p>VEH - 123</p>
-                            </div>
-                            <div class="mas_info">
-                                    <a href="">
-                                            <i class="large material-icons ampliar_info">keyboard_arrow_right</i>
-                                            
-                                    </a>
-                            </div>
-                            
-                    </div>
-                    <div class="nested">
-                            <div>
-                                <p>Código de viaje: 1</p>
-                                <h6>Ruta</h6>
-                                <p>Bogotá - Cartagena</p>
-                                <h6>Conductor</h6>
-                                <p>Armando Casas</p>
-                                <h6>Placa Vehículo</h6>
-                                <p>VEH - 123</p>
-                            </div>
-                            <div class="mas_info">
-                                    <a href="">
-                                            <i class="large material-icons ampliar_info">keyboard_arrow_right</i>
-                                            
-                                    </a>
-                            </div>
-                            
-                    </div>
-                  </div>
+                                    <p>{{i.3}}</p>
+                                </div>            
+                        </div>
+                    {% endfor %}    
+        </section>
+
+
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
@@ -304,4 +194,3 @@
             var instances = M.Sidenav.init(elems);
         </script>        
     </body>
-  

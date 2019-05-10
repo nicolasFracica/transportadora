@@ -28,6 +28,7 @@ def verViajes():
         INNER JOIN Empleado ON Empleado.idEmpleado = Vehiculo_empleado.idEmpleado
         INNER JOIN Carga_viaje on Carga_viaje.idViaje = Viaje.idViaje
         INNER JOIN Carga on Carga.idCarga = Carga_viaje.idCarga
+        ORDER BY Viaje.idViaje
     """
     with connection.cursor() as cursor:
         cursor.execute(query)
