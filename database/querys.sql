@@ -17,9 +17,8 @@ FROM Empleado INNER JOIN Cargo ON Empleado.idCargo = Cargo.idCargo;
 --Ver todos los vehículos
 
 SELECT Vehiculo.idVehiculo, Vehiculo.modelo, Vehiculo.placa, Tipo_de_mantenimiento.nombre
-FROM Vehiculo INNER JOIN Vehiculo_mantenimiento 
-ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo INNER JOIN Tipo_mantenimiento
-ON Vehiculo_mantenimiento.id_mantenimiento = Tipo_mantenimiento.id_mantenimiento
-INNER JOIN Tipo_de_mantenimiento 
-ON Tipo_de_mantenimiento.idTipoDeMantenimiento = Tipo_mantenimiento.id_tipo
+FROM Vehiculo 
+INNER JOIN Vehiculo_mantenimiento ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo 
+INNER join Mantenimiento on Mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
+INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = Mantenimiento.idTipoMantenimiento
 ORDER BY Vehiculo.idVehiculo ASC;

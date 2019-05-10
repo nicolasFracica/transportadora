@@ -20,12 +20,11 @@ def metodoquery():
 def verViajes():
     query = """
         SELECT Viaje.idViaje AS Codigo, Ruta.nombre AS Ruta, Empleado.nombre AS Conductor, Vehiculo.placa, Carga.nombre
-       
-        FROM Viaje INNER JOIN Ruta ON Viaje.idRuta = Ruta.idRuta
-        INNER JOIN viaje_vehiculo ON viaje_vehiculo.idViaje = Viaje.idViaje
-        INNER JOIN Vehiculo ON Vehiculo.idVehiculo = viaje_vehiculo.idVehiculo
-        INNER JOIN Vehiculo_empleado ON Vehiculo.idVehiculo = Vehiculo_empleado.idVehiculo
-        INNER JOIN Empleado ON Empleado.idEmpleado = Vehiculo_empleado.idEmpleado
+        FROM Viaje 
+	    INNER JOIN Ruta ON Viaje.idRuta = Ruta.idRuta
+	    inner join Emp_ve_vi on Emp_ve_vi.idViaje = Viaje.idViaje 
+        INNER JOIN Vehiculo ON Vehiculo.idVehiculo = Emp_ve_vi.idVehiculo
+        INNER JOIN Empleado ON Empleado.idEmpleado = Emp_ve_vi.idEmpleado
         INNER JOIN Carga_viaje on Carga_viaje.idViaje = Viaje.idViaje
         INNER JOIN Carga on Carga.idCarga = Carga_viaje.idCarga
         ORDER BY Viaje.idViaje
@@ -52,11 +51,10 @@ def verEmpleados():
 def verVehiculos():
     query = """
         SELECT Vehiculo.idVehiculo, Vehiculo.modelo, Vehiculo.placa, Tipo_de_mantenimiento.nombre
-        FROM Vehiculo INNER JOIN Vehiculo_mantenimiento 
-        ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo INNER JOIN Tipo_mantenimiento
-        ON Vehiculo_mantenimiento.id_mantenimiento = Tipo_mantenimiento.id_mantenimiento
-        INNER JOIN Tipo_de_mantenimiento 
-        ON Tipo_de_mantenimiento.idTipoDeMantenimiento = Tipo_mantenimiento.id_tipo
+        FROM Vehiculo 
+	    INNER JOIN Vehiculo_mantenimiento ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo 
+	    INNER join Mantenimiento on Mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
+        INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = Mantenimiento.idTipoMantenimiento
         ORDER BY Vehiculo.idVehiculo ASC;
     """
     with connection.cursor() as cursor:
