@@ -1,59 +1,62 @@
 CREATE table Ruta (
-	idRuta int primary key,
+	idRuta int not null auto_increment primary key,
 	nombre VARCHAR(150)
 );
 
 CREATE table Vehiculo (
-	idVehiculo int primary key,
+	idVehiculo int  not null auto_increment primary key,
 	modelo VARCHAR(150),
 	placa VARCHAR(150)
 );
 
 CREATE table Viaje (
-	idViaje int primary key,
+	idViaje int not null auto_increment primary key,
 	duracion int,
+	cantidad int,
 	fecha date,
 	descripcion VARCHAR(150),
     idRuta int,
 	foreign key (idRuta) references Ruta (idRuta)
 );
 
-CREATE table Mantenimiento (
-	idMantenimiento INT PRIMARY KEY,
-	fecha DATE
-);
-
 CREATE table Tipo_de_mantenimiento(
-	idTipoDeMantenimiento INT PRIMARY KEY,
+	idTipoMantenimiento INT not null auto_increment primary key,
 	nombre VARCHAR(150),
 	descripcion VARCHAR(150)
 );
 
+CREATE table Mantenimiento (
+	idMantenimiento INT not null auto_increment primary key,
+	fecha DATE,
+	idTipoMantenimiento int,
+	FOREIGN KEY (idTipoMantenimiento) REFERENCES Tipo_de_mantenimiento (idTipoMantenimiento)
+);
+
 CREATE TABLE Ciudad (
-	idCiudad INT PRIMARY KEY,
+	idCiudad INT not null auto_increment primary key,
 	nombre VARCHAR(150),
 	departamento VARCHAR(150)
 );
 
 CREATE TABLE Tipo_parada (
-	idTipoParada INT PRIMARY KEY,
+	idTipoParada INT not null auto_increment primary key,
 	nombre VARCHAR(150)
 );
 
 CREATE table Cargo(
-    idCargo INT PRIMARY KEY,
-    nombre VARCHAR(150),
-    descripcion VARCHAR(150)
+idCargo INT not null auto_increment primary key,
+nombre VARCHAR(150),
+descripcion VARCHAR(150)
 );
 
 CREATE TABLE Tipo_de_carga (
-   idTipoDeCarga INT PRIMARY KEY,
+   idTipoDeCarga INT not null auto_increment primary key,
    nombre VARCHAR(150),
    descripción VARCHAR(150)
 );
 
 CREATE TABLE Carga (
-   idCarga INT PRIMARY KEY,
+   idCarga INT not null auto_increment primary key,
    nombre VARCHAR(150),
    idTipoDeCarga INT,
    FOREIGN KEY(idTipoDeCarga) REFERENCES Tipo_de_carga(idTipoDeCarga)	
@@ -67,13 +70,13 @@ CREATE table Carga_viaje (
 );
 
 CREATE table Tipo_de_pago(
-	idTipo_de_pago INT PRIMARY KEY,
+	idTipo_de_pago INT not null auto_increment primary key,
 	nombre VARCHAR(150),
 	descripcion VARCHAR(150)
 );
 
 CREATE table Factura(
-	idFactura INT PRIMARY KEY,
+	idFactura INT not null auto_increment primary key,
 	fecha DATE,
 	valor INT, 
 	id_pago INT, 
@@ -81,7 +84,7 @@ CREATE table Factura(
 );
 
 CREATE TABLE Parada (
-	idParada INT PRIMARY KEY,
+	idParada INT not null auto_increment primary key,
 	nombre VARCHAR(150),
 	direccion VARCHAR(150),
 	idCiudad INT,
@@ -106,37 +109,30 @@ CREATE TABLE Tipo_parada_parada_ruta (
 );
 
 CREATE table Sucursal(
-    idSucursal INT PRIMARY KEY,
-    idCiudad INT,
-    FOREIGN KEY (idCiudad) REFERENCES Ciudad(idCiudad),
-    nombre VARCHAR(150),
-    direccion VARCHAR(150),
-    nit INT
+	idSucursal INT not null auto_increment primary key,
+	idCiudad INT,
+	FOREIGN KEY (idCiudad) REFERENCES Ciudad(idCiudad),
+	nombre VARCHAR(150),
+	direccion VARCHAR(150),
+	nit INT
 );
 
 CREATE table Cliente(
-    idCliente INT PRIMARY KEY,
-    nombre VARCHAR(150),
-    idSucursal INT,
-    FOREIGN KEY (idSucursal) REFERENCES Sucursal(idSucursal)
+	idCliente INT not null auto_increment primary key,
+	nombre VARCHAR(150),
+	idSucursal INT,
+	FOREIGN KEY (idSucursal) REFERENCES Sucursal(idSucursal)
 );
 
 CREATE table Empleado(
-    idEmpleado INT PRIMARY KEY,
-    nombre VARCHAR(150),
-    fechaNacimiento DATE,
-    documento INT,
-    idCargo INT,
-    idSucursal INT,
-    FOREIGN KEY (idCargo) REFERENCES Cargo(idCargo),
-    FOREIGN KEY (idSucursal) REFERENCES Sucursal(idSucursal)
-);
-
-CREATE table Vehiculo_empleado (
-	idVehiculo INT,
-    idEmpleado INT,
-	FOREIGN KEY (idEmpleado) REFERENCES Empleado (idEmpleado),
-	FOREIGN KEY (idVehiculo) REFERENCES Vehiculo (idVehiculo)
+	idEmpleado INT not null auto_increment primary key,
+	nombre VARCHAR(150),
+	fechaNacimiento DATE,
+	documento INT,
+	idCargo INT,
+	idSucursal INT,
+	FOREIGN KEY (idCargo) REFERENCES Cargo(idCargo),
+	FOREIGN KEY (idSucursal) REFERENCES Sucursal(idSucursal)
 );
 
 CREATE table Vehiculo_mantenimiento(
@@ -146,16 +142,11 @@ CREATE table Vehiculo_mantenimiento(
 	FOREIGN KEY (id_mantenimiento) REFERENCES Mantenimiento(idMantenimiento)
 );
 
-CREATE table Tipo_mantenimiento(
-	id_mantenimiento INT,
-	id_tipo INT, 
-	FOREIGN KEY (id_mantenimiento) REFERENCES Mantenimiento(idMantenimiento),
-	FOREIGN KEY (id_tipo) REFERENCES Tipo_de_mantenimiento (idTipoDeMantenimiento)
-);
-
-CREATE table viaje_vehiculo (
-	idViaje INT,
-    idVehiculo INT,
-	FOREIGN KEY (idViaje) REFERENCES  Viaje (idViaje),
-	FOREIGN KEY (idVehiculo) REFERENCES  Vehiculo (idVehiculo)
+Create table Emp_ve_vi (
+	idEmpleado int,
+	idVehiculo int,
+	idViaje int,
+	FOREIGN KEY (idEmpleado) REFERENCES Empleado (idEmpleado),
+ 	FOREIGN KEY (idVehiculo) REFERENCES Vehiculo (idVehiculo ),
+	FOREIGN KEY (idViaje) REFERENCES Viaje (idViaje)
 );
