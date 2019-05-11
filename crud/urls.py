@@ -17,5 +17,7 @@ urlpatterns = [
     path('vehiculos/<int:pk>/editar', views.editarVehiculo, name='editarVehiculo'),
     path('agregarVehiculo',
          views.agregarVehiculo, name='agregarVehiculo'),
-    path('estadistica', views.estadistica, name='estadistica')
+    path('estadistica', views.estadistica, name='estadistica'),
+    path('test', views.get_data, name='test'),
+
 ]
