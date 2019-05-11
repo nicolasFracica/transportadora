@@ -1,4 +1,5 @@
 {% load static %}
+
 <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,8 +22,8 @@
         <nav class="grey darken-4">
             <div class="container section">
                 <div class="div-wrapper">
-                    <a href="#" class="brand-logo center">Ver Viajes</a>
-                    <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                    <a href="#" class="brand-logo center" id="titulo">Ver Viajes</a>
+                    <a href="#" class="sidenav-trigger show-on-large" id="menu" data-target="menu-side">
                         <i class="material-icons">menu</i>
                     </a>
 
@@ -103,46 +104,48 @@
             </ul>
         </li>
     </ul>
-    <div class="wrapper">
-        <!--Barra de Busqueda-->
-        <div class="caja1">
-            <div class="search-box">
-                <input class="search-txt" type="text" name="" placeholder="Buscar ..." id="filterInput">
-                <a class="search-btn" href="#">
-                </a>
+        <div class="wrapper">
+            <!--Barra de Busqueda-->
+            <div class="caja1">
+                <div class="search-box">
+                    <input class="search-txt" type="text" name="" placeholder="Buscar ..." id="filterInput">
+                    <a class="search-btn" href="#">
+                    </a>
+                </div>
+            </div>
+
+            <!--DIV para la tabla-->
+            <div class="workspace">
+                <table class="striped green lighten-2 highlight">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Ruta</th>
+                            <th>Conductor</th>
+                            <th>Vehículo</th>
+                            <th>Carga</th>
+                            <th>Peso</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="names">
+                        {% for i in Lista %}
+                        <tr onclick = "location.href='http://localhost:8000/viajes/{{ i.0 }}';">
+                            <td>{{ i.0 }}</td>
+                            <td>{{ i.1 }}</td>
+                            <td>{{ i.2 }}</td>
+                            <td>{{ i.3 }}</td>
+                            <td>{{ i.4 }}</td>
+                            <td>{{ i.5 }}</td> 
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!--DIV para la tabla-->
-        <div class="workspace">
-            <table class="striped green lighten-2 highlight">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Ruta</th>
-                        <th>Conductor</th>
-                        <th>Vehículo</th>
-                        <th>Carga</th>
-                    </tr>
-                </thead>
-
-                <tbody id="names">
-                    {% for i in Lista %}
-                    <tr>
-                        <td>{{ i.0 }}</td>
-                        <td>{{ i.1 }}</td>
-                        <td>{{ i.2 }}</td>
-                        <td>{{ i.3 }}</td>
-                        <td>{{ i.4 }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
     <!--JavaScript at end of body for optimized loading-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         var elems = document.querySelectorAll('.sidenav');

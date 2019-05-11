@@ -1,0 +1,45 @@
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  color: black;
+}
+
+a.btn {
+  margin-top: 30%;
+}
+.modal {
+  max-height: 90%;
+}
+
+section.h4 {
+  align-self: center;
+}
+
+input[type="submit"] {
+  width: 100%;
+  margin-top: 50px;
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+#editar {
+  margin-top: 0%;
+  background: rgb(82, 235, 76);
+}
+
+#borrar {
+  margin-top: 0%;
+  background: rgb(123, 145, 123);
+}
+
+#menu,
+#titulo {
+  color: white;
+}
