@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
-
+from .forms import *
 
 def index(request):
     viajes = verViajes()
@@ -76,4 +76,25 @@ def agregarVehiculo(request):
 
 
 def estadistica(request):
-    return HttpResponse("Hola mundo desde estadistica.")
+    graph1()
+    graph2()
+    graph3()
+    graph4()
+    graph5()
+    graph6()
+    return render(request, 'crud/estadistica.html')
+
+def get_data(request):
+    name = "empty"
+    if request.method == 'POST':
+       name = request.POST.get("your_name")
+    return render(request, 'crud/test.html', {'name': name})
+
+def image(request):
+    graph1()
+    graph2()
+    graph3()
+    graph4()
+    graph5()
+    graph6()
+    return render(request, 'crud/test.html')

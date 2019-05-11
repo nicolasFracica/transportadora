@@ -1,7 +1,13 @@
 from django.db import connection
 import numpy as np
 import pandas as pd
-import matplotlib as plt
+import sqlalchemy as sql
+import matplotlib.pyplot as plt
+import os
+from IPython import get_ipython
+
+
+parentDir = os.path.dirname(os.path.abspath(__file__))
 
 
 def metodoquery():
@@ -53,8 +59,8 @@ def verVehiculos():
         SELECT Vehiculo.idVehiculo, Vehiculo.modelo, Vehiculo.placa, Tipo_de_mantenimiento.nombre
         FROM Vehiculo 
 	    INNER JOIN Vehiculo_mantenimiento ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo 
-	    INNER join Mantenimiento on Mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
-        INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = Mantenimiento.idTipoMantenimiento
+	    inner join mantenimiento on mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
+        INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = mantenimiento.idTipoMantenimiento
         ORDER BY Vehiculo.idVehiculo ASC;
     """
     with connection.cursor() as cursor:
