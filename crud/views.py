@@ -15,8 +15,11 @@ def viajes(request):
     return render(request, 'crud/viajes.html', context)
 
 
-def verViaje(request):
-    return render(request, 'crud/verViajes.html')
+def verViaje(request, id):
+    lista = verViajes()
+    viajes = viaje(id)
+    context = {'Viaje': viajes, 'Lista': lista}
+    return render(request, 'crud/verViaje.html', context)
 
 
 def editarViaje(request):
@@ -37,12 +40,17 @@ def empleados(request):
     return render(request, 'crud/empleados.html', context)
 
 
-def verEmpleado(request):
-    return HttpResponse("Hola mundo desde verEmpleado.")
+def verEmpleado(request, id):
+    lista = verEmpleados()
+    empleados = empleado(id)
+    context = {'Empleado': empleados, 'Lista': lista}
+    return render(request, 'crud/verEmpleado.html', context)
 
 
-def editarEmpleado(request):
-    return HttpResponse("Hola mundo desde editarEmpleado.")
+def editarEmpleado(request, id):
+    empleados = empleado(id)
+    context = {'Empleado': empleados}
+    return render(request, 'crud/editarEmpleado.html', context)
 
 
 def agregarEmpleado(request):
