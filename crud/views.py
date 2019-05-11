@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
-from .forms import *
+
 
 def index(request):
     viajes = verViajes()
@@ -84,11 +84,13 @@ def estadistica(request):
     graph6()
     return render(request, 'crud/estadistica.html')
 
+
 def get_data(request):
     name = "empty"
     if request.method == 'POST':
-       name = request.POST.get("your_name")
+        name = request.POST.get("your_name")
     return render(request, 'crud/test.html', {'name': name})
+
 
 def image(request):
     graph1()
