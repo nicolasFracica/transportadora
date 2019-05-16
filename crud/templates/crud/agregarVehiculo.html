@@ -17,105 +17,93 @@
 
     <!--NAVBAR-->
     <header>
-                <div class="navbar-fixed">
-                        <nav class="grey darken-4">
-                            <div class="container section">
-                                <div class="div-wrapper">
-                                    <a href="#" class="brand-logo center">Agregar Vehículo</a>
-                                    <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
-                                        <i class="material-icons">menu</i>
-                                    </a>
-                                    
-                                </div>
-                            </div>
-                        </nav>
+        <div class="navbar-fixed">
+            <nav class="grey darken-4">
+                <div class="container section">
+                    <div class="div-wrapper">
+                        <a href="#" class="brand-logo center">Agregar Vehículo</a>
+                        <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        
                     </div>
-                    <ul class="sidenav" id="menu-side">
-                        <li>
-                            <div class="user-view">
-                                <div class="background">
-                                    <img src="bg1.jpg" alt="">
-                                </div>
-                                <a href="#" >
-                                    <img src="user.png" alt="" class="circle">
-                                </a>
-                                <a href = "">
-                                    <span class="name white-text">Sthefania Continelli</span>
-                                </a>
-                                <a href = "">
-                                    <span class="email white-text">sthefaniaco@trasportadora.com</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="material-icons">navigation</i>
-                                Viajes
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="verViajes.html">
-                                        <i class="material-icons">visibility</i>
-                                        Ver Viajes
-                                    </a>  
-                                </li>
-                                <li>
-                                    <a href="agregarViaje.html">
-                                        <i class="material-icons">add_circle</i>
-                                        Agregar Viaje
-                                    </a>  
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="material-icons">face</i>
-                                Empleados
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">visibility</i>
-                                        Ver Empleados
-                                    </a>  
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">add_circle</i>
-                                        Agregar Empleado
-                                    </a>  
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="material-icons">directions_bus</i>
-                                Vehículos
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">visibility</i>
-                                        Ver Vehículos
-                                    </a>  
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">add_circle</i>
-                                        Agregar Vehículo
-                                    </a>  
-                                </li>
-                                <li>
-                                        <a href="">
-                                            <i class="material-icons">show_chart</i>
-                                            Estadísticas
-                                        </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </div>
-        </header>
+            </nav>
+        </div>
+        <ul class="sidenav" id="menu-side">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="../../static/images/bg1.jpg" alt="">
+                    </div>
+                    <a href="#" >
+                        <img src="../../static/images/user.png" alt="" class="circle">
+                    </a>
+                    <a href = "">
+                        <span class="name white-text">Sthefania Continelli</span>
+                    </a>
+                    <a href = "">
+                        <span class="email white-text">sthefaniaco@trasportadora.com</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="http://localhost:8000">
+                    <i class="material-icons">navigation</i>
+                    Viajes
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/viajes">
+                            <i class="material-icons">visibility</i>
+                            Ver Viajes
+                        </a>  
+                    </li>
+                    <li>
+                        <a href="http://localhost:8000/agregarViaje">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Viaje
+                        </a>  
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/empleados">
+                    <i class="material-icons">face</i>
+                    Empleados
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/agregarEmpleado">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Empleado
+                        </a>  
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/vehiculos">
+                    <i class="material-icons">directions_bus</i>
+                    Vehículos
+                </a>
+                <ul>
+                    <li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Vehículo
+                        </a>  
+                    </li>
+                    <li>
+                            <a href="http://localhost:8000/estadistica">
+                                <i class="material-icons">show_chart</i>
+                                Estadísticas
+                            </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
 
         <section>
             <div class="section container scrollspy" id="contact">
@@ -132,24 +120,6 @@
                         </div>
                     </div>
                     
-                    
-                    <div class="row">
-                        <div class="input-field col s12">
-                                <p class="col s6">¿Se han realizado mantenimientos al vehículo?</p>
-                                    <div class="col s6">
-                                        <label>
-                                          <input name="group1" type="radio" />
-                                          <span>Si</span>
-                                        </label>
-                                    </div>
-                                    <div class="col s6">
-                                        <label>
-                                          <input name="group1" type="radio" />
-                                          <span>No</span>
-                                        </label>
-                                    </div>
-                        </div>
-                    </div>
 
                     <div class="row">
                             <div class="input-field col s12">

@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="agregarViaje.html">
+                    <a href="http://localhost:8000/agregarViaje">
                         <i class="material-icons">add_circle</i>
                         Agregar Viaje
                     </a>
@@ -77,7 +77,7 @@
                 <li>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="http://localhost:8000/agregarEmpleado">
                         <i class="material-icons">add_circle</i>
                         Agregar Empleado
                     </a>
@@ -91,13 +91,13 @@
             </a>
             <ul>
                 <li>
-                    <a href="">
+                    <a href="http://localhost:8000/agregarVehiculo">
                         <i class="material-icons">add_circle</i>
                         Agregar Vehículo
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="http://localhost:8000/estadistica">
                         <i class="material-icons">show_chart</i>
                         Estadísticas
                     </a>
@@ -135,7 +135,7 @@
                             <td>{{ i.1 }}</td>
                             <td>{{ i.2 }}</td>
                             <td>{{ i.3 }}</td>
-                            <td>{{ i.4 }}</td>
+                            <td>{{ i.4 |date:'Y-m-d'}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

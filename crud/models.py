@@ -26,9 +26,9 @@ def metodoquery():
 def verViajes():
     query = """
         SELECT Viaje.idViaje AS Codigo, Ruta.nombre AS Ruta, Empleado.nombre AS Conductor, Vehiculo.placa, Carga.nombre, Viaje.cantidad
-        FROM Viaje 
+        FROM Viaje
 	    INNER JOIN Ruta ON Viaje.idRuta = Ruta.idRuta
-	    inner join Emp_ve_vi on Emp_ve_vi.idViaje = Viaje.idViaje 
+	    inner join Emp_ve_vi on Emp_ve_vi.idViaje = Viaje.idViaje
         INNER JOIN Vehiculo ON Vehiculo.idVehiculo = Emp_ve_vi.idVehiculo
         INNER JOIN Empleado ON Empleado.idEmpleado = Emp_ve_vi.idEmpleado
         INNER JOIN Carga_viaje on Carga_viaje.idViaje = Viaje.idViaje
@@ -57,10 +57,10 @@ def verEmpleados():
 def verVehiculos():
     query = """
         SELECT Vehiculo.idVehiculo, Vehiculo.modelo, Vehiculo.placa, Tipo_de_mantenimiento.nombre
-        FROM Vehiculo 
-	    INNER JOIN Vehiculo_mantenimiento ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo 
-	    inner join mantenimiento on mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
-        INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = mantenimiento.idTipoMantenimiento
+        FROM Vehiculo
+	    INNER JOIN Vehiculo_mantenimiento ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo
+	    inner JOIN Mantenimiento on Mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
+        INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = Mantenimiento.idTipoMantenimiento
         ORDER BY Vehiculo.idVehiculo ASC;
     """
     with connection.cursor() as cursor:
@@ -72,7 +72,7 @@ def verVehiculos():
 def getEmpleados():
     query = """
         Select e.nombre
-        from empleado e
+        from Empleado e
     """
     with connection.cursor() as cursor:
         cursor.execute(query)
@@ -84,18 +84,19 @@ def getEmpleados():
 def getCiudades():
     query = """
         Select c.nombre
-        from ciudad c
+        from Ciudad c
     """
     with connection.cursor() as cursor:
         cursor.execute(query)
         row = cursor.fetchall()
 
     return row
+
 
 def getVehiculos():
     query = """
         Select v.placa
-        from vehiculo v
+        from Vehiculo v
     """
     with connection.cursor() as cursor:
         cursor.execute(query)
@@ -104,14 +105,32 @@ def getVehiculos():
     return row
 
 
-def empleado(id):
+def getRutas():
     query = """
-        SELECT Empleado.idEmpleado, Empleado.nombre, Empleado.documento,
-        Cargo.nombre, Empleado.fechaNacimiento
-        FROM Empleado INNER JOIN Cargo ON
-        Empleado.idCargo = Cargo.idCargo
-        WHERE Empleado.idEmpleado =  """ + str(id)
+        SELECT Ruta.nombre FROM Ruta
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
 
+    return row
+
+
+def getCarga():
+    query = """
+        SELECT Carga.nombre FROM Carga
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
+    return row
+
+
+def getSucursal():
+    query = """
+        SELECT Sucursal.nombre FROM Sucursal
+    """
     with connection.cursor() as cursor:
         cursor.execute(query)
         row = cursor.fetchall()
@@ -121,8 +140,8 @@ def empleado(id):
 
 def viaje(id):
     query = """
-        SELECT Ruta.nombre, Empleado.nombre, Vehiculo.placa, Viaje.cantidad, Carga.nombre, 
-        Tipo_de_carga.descripción, Viaje.fecha, Viaje.duracion, Factura.valor, Tipo_de_pago.nombre
+        SELECT Ruta.nombre, Empleado.nombre, Vehiculo.placa, Viaje.cantidad, Carga.nombre,
+        Viaje.descripcion, Viaje.fecha, Viaje.duracion, Factura.valor, Tipo_de_pago.nombre, Viaje.idViaje
         FROM Viaje INNER JOIN Ruta ON Viaje.idRuta = Ruta.idRuta
         INNER JOIN Emp_ve_vi ON Emp_ve_vi.idViaje = Viaje.idViaje
         INNER JOIN Empleado ON Emp_ve_vi.idEmpleado = Empleado.idEmpleado
@@ -140,6 +159,120 @@ def viaje(id):
         row = cursor.fetchall()
 
     return row
+
+
+def empleado(id):
+    query = """
+        SELECT Empleado.nombre, Empleado.documento, Empleado.fechaNacimiento, Cargo.nombre, Sucursal.nombre, Empleado.idEmpleado
+        FROM Empleado INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.idSucursal
+        INNER JOIN Cargo ON Empleado.idCargo = Cargo.idCargo
+        WHERE Empleado.idEmpleado = """ + str(id)
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
+    return row
+
+
+def vehiculo(id):
+    query = """
+        SELECT Vehiculo.modelo, Vehiculo.placa, Tipo_de_mantenimiento.nombre, Tipo_de_mantenimiento.descripcion,
+        Mantenimiento.fecha, Vehiculo.idVehiculo
+        FROM Vehiculo INNER JOIN Vehiculo_mantenimiento ON Vehiculo_mantenimiento.id_vehiculo = Vehiculo.idVehiculo
+	    INNER JOIN Mantenimiento on Mantenimiento.idMantenimiento = Vehiculo_mantenimiento.id_mantenimiento
+        INNER JOIN Tipo_de_mantenimiento ON Tipo_de_mantenimiento.idTipoMantenimiento = Mantenimiento.idTipoMantenimiento
+        WHERE Vehiculo.idVehiculo = """ + str(id)
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        row = cursor.fetchall()
+
+    return row
+
+
+def updateEmpleado(name, document, date, cargo, sucursal, id):
+    query = """
+        UPDATE Empleado
+        SET nombre = '""" + name + """',
+        fechaNacimiento = '""" + date + """',
+        documento = """ + str(document) + """,
+        idCargo = """ + str(cargo) + """,
+        idSucursal = """ + str(sucursal) + """ WHERE idEmpleado = """ + str(id)
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+
+
+def updateVehiculo(placa, modelo, id):
+    query = """
+        UPDATE Vehiculo
+        SET modelo = '""" + modelo + """',
+        placa = '""" + placa + """' WHERE idVehiculo = """ + str(id)
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+
+
+def updateMantenimiento(fecha, mantenimiento, id):
+    query2 = """
+        INSERT INTO Mantenimiento(fecha, idTipoMantenimiento)
+        VALUES('""" + fecha + """', """ + str(mantenimiento) + """)
+        """
+    query3 = """
+        INSERT INTO Vehiculo_mantenimiento(id_vehiculo, id_mantenimiento)
+        VALUES(""" + str(id) + """, """ + str(mantenimiento) + """)
+        """
+
+    with connection.cursor() as cursor:
+        cursor.execute(query2)
+        cursor.execute(query3)
+
+
+def updateViaje(id, camino, name, plate, weight, material, date, desc, hour, price, pago):
+    query1 = """
+        UPDATE Viaje SET duracion = """ + hour + """, cantidad = """ + weight + """,
+        fecha = '""" + date + """', descripcion = '""" + desc + """', 
+        idRuta = """ + str(camino) + """ WHERE idViaje = """ + str(id)
+
+    query2 = """
+        UPDATE Carga_viaje SET idCarga = """ + str(material) + """ 
+        WHERE idViaje = """ + str(id)
+
+    query3 = """
+        UPDATE Factura SET fecha = '""" + date + """', valor = """ + str(price) + """,
+        id_pago = """ + str(pago) + """ WHERE idFactura = """ + str(id)
+
+    query4 = """
+        UPDATE Viaje_factura SET fecha = '""" + date + """' WHERE idFactura = """ + str(id)
+    
+    with connection.cursor() as cursor:
+        cursor.execute(query1)
+        cursor.execute(query2)
+        cursor.execute(query3)
+        cursor.execute(query4)
+    
+
+def deleteEmpleado(id):
+    query = """
+        DELETE FROM Empleado WHERE idEmpleado = """ + str(id)
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+
+def deleteVehiculo(id):
+    query = """
+        DELETE FROM Vehiculo WHERE idVehiculo = """ +str(id)
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+
+def deleteViaje(id):
+    query = """
+        DELETE FROM Viaje WHERE idViaje = """ +str(id)
+    
+    with connection.cursor() as cursor:
+        cursor.execute(query)
 
 def graph1():
     delimage(1)

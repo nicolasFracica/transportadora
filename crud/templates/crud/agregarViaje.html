@@ -1,231 +1,247 @@
 {% load static %}
-    <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <!-- font awesome -->
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-            <!--Import Google Icon Font-->
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <!-- Compiled and minified CSS -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-      
-      <title>Agregar Viaje</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <title>Agregar Viaje</title>
+</head>
+
 <body>
 
     <!--NAVBAR-->
     <header>
-                <div class="navbar-fixed">
-                        <nav class="grey darken-4">
-                            <div class="container section">
-                                <div class="div-wrapper">
-                                    <a href="#" class="brand-logo center">Agregar Viaje</a>
-                                    <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
-                                        <i class="material-icons">menu</i>
-                                    </a>
-                                    
-                                </div>
-                            </div>
-                        </nav>
+        <div class="navbar-fixed">
+            <nav class="grey darken-4">
+                <div class="container section">
+                    <div class="div-wrapper">
+                        <a href="#" class="brand-logo center">Agregar Viaje</a>
+                        <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        
                     </div>
-                    <ul class="sidenav" id="menu-side">
-                        <li>
-                            <div class="user-view">
-                                <div class="background">
-                                    <img src="bg1.jpg" alt="">
-                                </div>
-                                <a href="#" >
-                                    <img src="user.png" alt="" class="circle">
-                                </a>
-                                <a href = "">
-                                    <span class="name white-text">Sthefania Continelli</span>
-                                </a>
-                                <a href = "">
-                                    <span class="email white-text">sthefaniaco@trasportadora.com</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="material-icons">navigation</i>
-                                Viajes
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="verViajes.html">
-                                        <i class="material-icons">visibility</i>
-                                        Ver Viajes
-                                    </a>  
-                                </li>
-                                <li>
-                                    <a href="agregarViaje.html">
-                                        <i class="material-icons">add_circle</i>
-                                        Agregar Viaje
-                                    </a>  
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="material-icons">face</i>
-                                Empleados
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">visibility</i>
-                                        Ver Empleados
-                                    </a>  
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">add_circle</i>
-                                        Agregar Empleado
-                                    </a>  
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="material-icons">directions_bus</i>
-                                Vehículos
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">visibility</i>
-                                        Ver Vehículos
-                                    </a>  
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="material-icons">add_circle</i>
-                                        Agregar Vehículo
-                                    </a>  
-                                </li>
-                                <li>
-                                        <a href="">
-                                            <i class="material-icons">show_chart</i>
-                                            Estadísticas
-                                        </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </div>
-        </header>
+            </nav>
+        </div>
+        <ul class="sidenav" id="menu-side">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="../../static/images/bg1.jpg" alt="">
+                    </div>
+                    <a href="#" >
+                        <img src="../../static/images/user.png" alt="" class="circle">
+                    </a>
+                    <a href = "">
+                        <span class="name white-text">Sthefania Continelli</span>
+                    </a>
+                    <a href = "">
+                        <span class="email white-text">sthefaniaco@trasportadora.com</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="http://localhost:8000">
+                    <i class="material-icons">navigation</i>
+                    Viajes
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/viajes">
+                            <i class="material-icons">visibility</i>
+                            Ver Viajes
+                        </a>  
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Viaje
+                        </a>  
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/empleados">
+                    <i class="material-icons">face</i>
+                    Empleados
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/agregarEmpleado">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Empleado
+                        </a>  
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/vehiculos">
+                    <i class="material-icons">directions_bus</i>
+                    Vehículos
+                </a>
+                <ul>
+                    <li>
+                    <li>
+                        <a href="http://localhost:8000/agregarVehiculo">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Vehículo
+                        </a>  
+                    </li>
+                    <li>
+                            <a href="http://localhost:8000/estadistica">
+                                <i class="material-icons">show_chart</i>
+                                Estadísticas
+                            </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
 
-        <section>
-            <div class="section container scrollspy" id="contact">
+    <section>
+        <div class="section container scrollspy" id="contact">
             <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                    <select>	
-                                      <option value="" disabled selected>Seleccione una ciudad</option>
-                                      {% for i in Ciudades %}
-                                         <option value= i>{{i.0}}</option>>
-                                         {% endfor %}
-                                    </select>
-                                    <label>Ciudad Inicio</label>
-                            </div>
-                            <div class="input-field col s6">
-                                    <select>
-                                      <option value="" disabled selected>Seleccione una ciudad</option>
-                                      {% for i in Ciudades %}
-                                         <option value= i>{{i.0}}</option>>
-                                         {% endfor %}
-                                    </select>
-                                    <label>Ciudad Destino</label>
-                            </div>
-                        </div>
+                <form class="col s12">
                     <div class="row">
-                        <div class="col s2">
-                                <p>Conductor:</p>
+                        <div class="input-field col s6">
+                            <select id="ruta">
+                                <option value="" disabled selected>Seleccione una ruta</option>
+                                <option value="1">Bogotá</option>
+                                <option value="2">Sogamoso</option>
+                                <option value="3">Medellin</option>
+                                <option value="4">Cali</option>
+                                <option value="5">Corinto</option>
+                                <option value="6">Villavicencio</option>
+                                <option value="7">Arauca</option>
+                                <option value="8">Barranquilla</option>
+                                <option value="9">Manizales</option>
+                                <option value="10">Florencia</option>
+                            </select>
+                            <label for="ruta">Ruta</label>
                         </div>
-                        <div class="input-field col s5">
-                        <input  id="first_name" type="text" class="validate">
-                        <label for="first_name">Nombres</label>
+                        <div class="col s4">
+                            <p> </p>
                         </div>
-                        <div class="input-field col s5">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Apellidos</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col s2">
-                                    <p>Vehículo:</p>
-                            </div>
-                            <div class="input-field col s2">
-                            <input  id="placas" type="text" class="validate">
-                            <label for="placas">Placas</label>
-                            </div>
-                            <div class="col s3" offset-12>
-                                    <p>Carga:</p>
-                            </div>
-                            <div class="input-field col s5">
-                                    <textarea id="textarea2" class="materialize-textarea" data-length="30"></textarea>
-                                    <label for="textarea2">Descripción corta</label>
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="input-field col s6">
-                                    <select>
-                                      <option value="" disabled selected>Seleccione tipo de carga</option>
-                                      <option value="1">Construcción</option>
-                                      <option value="2">Material arenoso</option>
-                                      <option value="3">Inflamable</option>
-                                      <option value="4">Conductor</option>
-                                      <option value="5">Orgánico</option>
-                                    </select>
-                                    <label>Tipo de Carga</label>
-                            </div>
-                            <div class="input-field col s6">
-                                    <input placeholder="$" id="costo" type="number" class="validate">
-                                    <label for="costo">Costo del Viaje:</label>
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="input-field col s4">
-                                <input id="inicio" type="text" class="datepicker">
-                                <label for="inicio">Fecha de Inicio</label>
-                            </div>
-                            <div class="input-field col s4">
-                                    <input id="final" type="text" class="datepicker">
-                                    <label for="final">Fecha de Finalización</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input placeholder="hh-mm" id="duracion" type="number" class="validate">
-                                <label for="duracion">Duración:</label>
-                        </div>
-                            
-                        </div>
-                    <div class="row">
-                        <div class="input-field col s4">
-                                    <p>Paradas:</p>
-                        </div>
-                        <div class=" chips-placeholder chips-autocomplete col 6"></div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s13">
-                                <button class="btn">Enviar</button>
-                        </div>
-                        <div class="input-field col s13">
-                                <button class="btn grey" onclick="location.href='http://localhost:8000/viajes';">Cancelar</button>
-                        </div>
-                    </div>
-                    </div>
-                    </form>
-                </div>
-                
-        </section>
+                        <div class="col s0">
+                            <a href="">
+                                <i class="large material-icons">local_shipping</i>
+                            </a>
 
-       
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-        <script>
-          $(document).ready(function(){
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="conductor">
+                                <option value="" disabled selected>Seleccione un conductor</option>
+                                <option value="1">Bogotá</option>
+                                <option value="2">Sogamoso</option>
+                                <option value="3">Medellin</option>
+                                <option value="4">Cali</option>
+                                <option value="5">Corinto</option>
+                                <option value="6">Villavicencio</option>
+                                <option value="7">Arauca</option>
+                                <option value="8">Barranquilla</option>
+                                <option value="9">Manizales</option>
+                                <option value="10">Florencia</option>
+                            </select>
+                            <label for="conductor">Conductor</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="placa">
+                                <option value="" disabled selected>Seleccione un vehículo</option>
+                                <option value="1">Bogotá</option>
+                                <option value="2">Sogamoso</option>
+                                <option value="3">Medellin</option>
+                                <option value="4">Cali</option>
+                                <option value="5">Corinto</option>
+                                <option value="6">Villavicencio</option>
+                                <option value="7">Arauca</option>
+                                <option value="8">Barranquilla</option>
+                                <option value="9">Manizales</option>
+                                <option value="10">Florencia</option>
+                            </select>
+                            <label for="placa">Placa del Vehículo</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input placeholder="Peso en kilogramos" id="peso" type="number" class="validate">
+                            <label for="peso" class="active">Peso de la carga</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Seleccione un tipo</option>
+                                <option value="1">Construcción</option>
+                                <option value="2">Material arenoso</option>
+                                <option value="3">Inflamable</option>
+                                <option value="4">Conductor</option>
+                                <option value="5">Orgánico</option>
+                            </select>
+                            <label>Tipo de Carga</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="textarea2" type="text" class="validate">
+                            <label for="textarea2" class="active">Descripción corta de la carga</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="inicio" type="text" class="datepicker">
+                            <label for="inicio" class="active">Fecha del viaje</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="horas de viaje" id="duracion" type="number" class="validate">
+                            <label for="duracion">Duración</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="$" id="costo" type="number" class="validate">
+                            <label for="costo" class="active">Costo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" selected>Seleccione un medio</option>
+                                <option value="1">Tarjeta de Crédito</option>
+                                <option value="2">Tarjeta Débito</option>
+                                <option value="3">Efectivo</option>
+                                <option value="4">Cheque</option>
+                            </select>
+                            <label>Medio de Pago</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s13">
+                            <button class="btn">Enviar</button>
+                        </div>
+                        <div class="input-field col s13">
+                            <button class="btn grey">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
             M.updateTextFields();
             $('.sidenav').sidenav();
             $('.materialboxed').materialbox();
@@ -233,14 +249,14 @@
             $('.tabs').tabs();
             $('select').formSelect();
             $('input#input_text, textarea#textarea2').characterCounter();
-            
+
             $('.datepicker').datepicker();
-            $( ".datepicker" ).datepicker({
-                yearRange: [2016,2019],
+            $(".datepicker").datepicker({
+                yearRange: [2016, 2019],
                 changeMonth: true,
                 changeYear: true,
             });
-          });
-        </script>
-        
+        });
+    </script>
+
 </body>

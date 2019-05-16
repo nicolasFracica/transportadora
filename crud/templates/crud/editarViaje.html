@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +12,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-    <title>Editar Empleado</title>
+    <title>Editar Viaje</title>
 </head>
 
 <body>
@@ -24,7 +23,7 @@
             <nav class="grey darken-4">
                 <div class="container section">
                     <div class="div-wrapper">
-                        <a href="#" class="brand-logo center">Editar Empleado</a>
+                        <a href="#" class="brand-logo center">Editar Viaje</a>
                         <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
                             <i class="material-icons">menu</i>
                         </a>
@@ -107,48 +106,102 @@
             </li>
         </ul>
     </header>
+
     <section>
         <div class="section container scrollspy" id="contact">
             <div class="row">
-                <form class="col s12" action="http://localhost:8000/avisoEE/{{ Empleado.0.5 }}" method="post"
-                    id="encuesta">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="first_name" name="first_name" type="text" class="validate"
-                                value="{{ Empleado.0.0 }}">
-                            <label for="first_name">Nombre Completo</label>
-                        </div>
-                    </div>
+                <form class="col s12" action="http://localhost:8000/avisoEVI/{{ Viaje.0.10 }}" method="post">
+                {% csrf_token %}
                     <div class="row">
                         <div class="input-field col s6">
-                            <input value="{{ Empleado.0.1 }}" name="documento" id="documento" type="number"
-                                class="validate">
-                            <label for="documento">Número de Documento</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input value="{{ Empleado.0.2 |date:'Y-m-d' }}" name="inicio" id="inicio" type="text">
-                            <label for="inicio" class="active">Fecha del Nacimiento</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <select name="cargo">
-                                <option value="{{ Empleado.0.3}}" selected>{{ Empleado.0.3}}</option>
-                                <option value="Gerente">Gerente</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Conductor">Conductor</option>
-                            </select>
-                            <label>Cargo:</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <select name="sucursal">
-                                <option value="{{ Empleado.0.4}}" selected>{{ Empleado.0.4}}</option>
-                                {% for i in Sucursal %}
+                            <select id="ruta" name="ruta">
+                                <option value="{{ Viaje.0.0 }}" selected>{{ Viaje.0.0 }}</option>
+                                {% for i in Ruta %}
                                 <option value="{{ i.0 }}">{{ i.0 }}</option>
                                 {% endfor %}
                             </select>
-                            <label>Sucursal Asignada:</label>
+                            <label for="ruta">Ruta</label>
+                        </div>
+                        <div class="col s4">
+                            <p> </p>
+                        </div>
+                        <div class="col s0">
+                            <a href="">
+                                <i class="large material-icons">local_shipping</i>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="conductor" name="conductor">
+                                <option value="{{ Viaje.0.1 }}" selected>{{ Viaje.0.1 }}</option>
+                                {% for i in Empleado %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="conductor">Conductor</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="placa" name="placa">
+                                <option value="{{ Viaje.0.2 }}" selected>{{ Viaje.0.2 }}</option>
+                                {% for i in Carro %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="placa">Placa del Vehículo</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input value="{{ Viaje.0.3}}" name="peso" placeholder="Peso en kilogramos" id="peso"
+                                type="number" class="validate">
+                            <label for="peso" class="active">Peso de la carga</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select name="material">
+                                <option value="{{ Viaje.0.4}}" selected>{{ Viaje.0.4}}</option>
+                                {% for i in Carga %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label>Material de Carga</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input value="{{ Viaje.0.5}}" name="descripcion" id="textarea2" type="text" class="validate">
+                            <label for="textarea2" class="active">Descripción corta de la carga</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ Viaje.0.6 |date:'Y-m-d' }}" name="fecha" id="inicio" type="text">
+                            <label for="inicio" class="active">Fecha del viaje</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input value="{{ Viaje.0.7 }}" name="duracion" placeholder="horas de viaje" id="duracion" type="number"
+                                class="validate">
+                            <label for="duracion">Duración</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ Viaje.0.8 }}" name="costo" placeholder="$" id="costo" type="number" class="validate">
+                            <label for="costo" class="active">Costo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select name="pago">
+                                <option value="{{ Viaje.0.9 }}" selected>{{ Viaje.0.9 }}</option>
+                                <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                                <option value="Tarjeta Débito">Tarjeta Débito</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Cheque">Cheque</option>
+                            </select>
+                            <label>Medio de Pago</label>
                         </div>
                     </div>
                     <div class="row">
@@ -159,24 +212,27 @@
                             <button class="btn grey" id="cancelar">Cancelar</button>
                         </div>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </section>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script>
         $(document).ready(function () {
-
+            M.updateTextFields();
             $('.sidenav').sidenav();
             $('.materialboxed').materialbox();
             $('.parallax').parallax();
             $('.tabs').tabs();
             $('select').formSelect();
+            $('input#input_text, textarea#textarea2').characterCounter();
+
             $('.datepicker').datepicker();
             $(".datepicker").datepicker({
-                yearRange: [1945, 2001],
+                yearRange: [2016, 2019],
                 changeMonth: true,
                 changeYear: true,
             });
@@ -185,7 +241,7 @@
     <script>
         document.getElementById("cancelar").addEventListener("click", function (event) {
             event.preventDefault()
-            location.href = "http://localhost:8000/empleados";
+            location.href = "http://localhost:8000/viajes";
         });
     </script>
 </body>
