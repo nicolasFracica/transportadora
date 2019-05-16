@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from datetime import datetime
 from .models import *
 
 
@@ -22,8 +23,15 @@ def verViaje(request, id):
     return render(request, 'crud/verViaje.html', context)
 
 
-def editarViaje(request):
-    return HttpResponse("Hola mundo desde editarViaje.")
+def editarViaje(request, id):
+    viajes = viaje(id)
+    rutas = getRutas()
+    placas = getVehiculos()
+    conductores = getEmpleados()
+    materiales = getCarga()
+    context = {'Viaje': viajes, 'Ruta': rutas,
+               'Carro': placas, 'Empleado': conductores, 'Carga': materiales}
+    return render(request, 'crud/editarViaje.html', context)
 
 
 def agregarViaje(request):
@@ -49,12 +57,13 @@ def verEmpleado(request, id):
 
 def editarEmpleado(request, id):
     empleados = empleado(id)
-    context = {'Empleado': empleados}
+    lugar = getSucursal()
+    context = {'Empleado': empleados, 'Sucursal': lugar}
     return render(request, 'crud/editarEmpleado.html', context)
 
 
 def agregarEmpleado(request):
-    return HttpResponse("Hola mundo desde agregarEmpleado.")
+    return render(request, 'crud/agregarEmpleado.html')
 
 
 def vehiculos(request):
@@ -63,16 +72,21 @@ def vehiculos(request):
     return render(request, 'crud/vehiculos.html', context)
 
 
-def verVehiculo(request):
-    return HttpResponse("Hola mundo desde verVehiculo.")
+def verVehiculo(request, id):
+    vehiculos = verVehiculos()
+    carro = vehiculo(id)
+    context = {'Lista': vehiculos, 'Vehiculo': carro}
+    return render(request, 'crud/verVehiculo.html', context)
 
 
-def editarVehiculo(request):
-    return HttpResponse("Hola mundo desde editarVehiculo.")
+def editarVehiculo(request, id):
+    carro = vehiculo(id)
+    context = {'Vehiculo': carro}
+    return render(request, 'crud/editarVehiculo.html', context)
 
 
 def agregarVehiculo(request):
-    return HttpResponse("Hola mundo desde agregarVehiculo.")
+    return render(request, 'crud/agregarVehiculo.html')
 
 
 def estadistica(request):
@@ -86,10 +100,136 @@ def estadistica(request):
 
 
 def get_data(request):
-    name = "empty"
+    return render(request, 'crud/test.html')
+
+
+def avisoEViaje(request, id):
     if request.method == 'POST':
-        name = request.POST.get("your_name")
-    return render(request, 'crud/test.html', {'name': name})
+        route = request.POST.get("ruta")
+        name = request.POST.get("conductor")
+        plate = request.POST.get("placa")
+        weight = request.POST.get("peso")
+        cargo = request.POST.get("material")
+        date = request.POST.get("fecha")
+        desc = request.POST.get("descripcion")
+        hour = request.POST.get("duracion")
+        price = request.POST.get("costo")
+        pay = request.POST.get("pago")
+
+        def idRuta(route):
+            dict = {
+                'Ruta A': 1,
+                'Ruta B': 2,
+                'Ruta C': 3,
+                'Ruta D': 4,
+                'Ruta E': 5,
+                'Ruta F': 6,
+                'Ruta G': 7,
+                'Ruta H': 8,
+                'Ruta I': 9,
+                ' Ruta J': 10,
+            }
+            return dict.get(route)
+
+        def idCarga(cargo):
+            dict = {
+                'Ladrillos': 1,
+                'Arena blanca': 2,
+                'Piedra de rio': 3,
+                'Madera': 4,
+                'Arena Oscura': 5,
+                'Cemento': 6,
+                'Cobre': 7,
+                'PVC': 8,
+                'Frutas': 9,
+                'Flores': 10
+            }
+            return dict.get(cargo)
+
+        def idPago(pay):
+            dict = {
+                'Tarjeta de Crédito': 1,
+                'Tarjeta Débito': 2,
+                'Efectivo': 3,
+                'Cheque': 4
+            }
+            return dict.get(pay)
+    pago = idPago(pay)
+    camino = idRuta(route)
+    material = idCarga(cargo)
+    updateViaje(id, camino, name, plate, weight,
+                material, date, desc, hour, price, pago)
+    return render(request, 'crud/avisoEVI.html')
+
+
+def avisoEEmpleado(request, id):
+    if request.method == 'POST':
+        name = request.POST.get("first_name")
+        document = request.POST.get("documento")
+        calendar = request.POST.get("inicio")
+        work = request.POST.get("cargo")
+        place = request.POST.get("sucursal")
+        fecha = datetime.strptime(calendar, '%Y-%m-%d')
+        date = fecha.date()
+        date = date.strftime('%Y-%m-%d')
+
+    def idCargo(work):
+        dict = {
+            'Administrador': 1,
+            'Gerente': 2,
+            'Conductor': 3
+        }
+        return dict.get(work)
+    cargo = idCargo(work)
+
+    def idSucursal(place):
+        dict = {
+            'Sucursal 1': 1,
+            'Sucursal 2': 2,
+            'Sucursal 3': 3,
+            'Sucursal 4': 4,
+            'Sucursal 5': 5,
+            'Sucursal 6': 6,
+            'Sucursal 7': 7,
+            'Sucursal 8': 8,
+            'Sucursal 9': 9,
+            'Sucursal 10': 10,
+        }
+        return dict.get(place)
+    sucursal = idSucursal(place)
+
+    updateEmpleado(name, document, date, cargo, sucursal, id)
+    return render(request, 'crud/avisoEEmpleado.html')
+
+
+def eliminarEmpleado(request, id):
+    deleteEmpleado(id)
+    return render(request, 'crud/avisoDEmpleado.html')
+
+
+def eliminarVehiculo(request, id):
+    deleteVehiculo(id)
+    return render(request, 'crud/avisoDVehiculo.html')
+
+
+def eliminarViaje(request, id):
+    deleteViaje(id)
+    return render(request, 'crud/avisoDViaje.html')
+
+
+def avisoEVehiculo(request, id):
+    if request.method == 'POST':
+        placa = request.POST.get("placas")
+        modelo = request.POST.get("modelo")
+        descripcion = request.POST.get("descripcion")
+        fecha = request.POST.get("fecha")
+    if descripcion == 'correción defectos en el vehiculo':
+        mantenimiento = 1
+    if descripcion == 'conservación de los vehiculos':
+        mantenimiento = 2
+    updateVehiculo(placa, modelo, id)
+    updateMantenimiento(fecha, mantenimiento, id)
+    return render(request, 'crud/avisoEV.html')
 
 
 def image(request):

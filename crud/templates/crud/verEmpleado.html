@@ -10,7 +10,7 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'crud/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'crud/modalViaje.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'crud/modal.css' %}">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ver Empleados</title>
@@ -23,8 +23,8 @@
         <nav class="grey darken-4">
             <div class="container section">
                 <div class="div-wrapper">
-                    <a href="#" class="brand-logo center">Ver Empleados</a>
-                    <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                    <a href="#" class="brand-logo center" id="titulo">Ver Empleados</a>
+                    <a href="#" class="sidenav-trigger show-on-large" id="menu" data-target="menu-side">
                         <i class="material-icons">menu</i>
                     </a>
 
@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="agregarViaje.html">
+                    <a href="http://localhost:8000/agregarViaje">
                         <i class="material-icons">add_circle</i>
                         Agregar Viaje
                     </a>
@@ -70,7 +70,7 @@
             </ul>
         </li>
         <li>
-            <a href="">
+            <a href="http://localhost:8000/empleados">
                 <i class="material-icons">face</i>
                 Empleados
             </a>
@@ -78,7 +78,7 @@
                 <li>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="http://localhost:8000/agregarEmpleado">
                         <i class="material-icons">add_circle</i>
                         Agregar Empleado
                     </a>
@@ -92,13 +92,13 @@
             </a>
             <ul>
                 <li>
-                    <a href="">
+                    <a href="http://localhost:8000/agregarVehiculo">
                         <i class="material-icons">add_circle</i>
                         Agregar Vehículo
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="http://localhost:8000/estadistica">
                         <i class="material-icons">show_chart</i>
                         Estadísticas
                     </a>
@@ -148,7 +148,9 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <div id="login" class="modal">
-            <a href="http://localhost:8000/empleados"><h5 class="modal-close">&#10005;</h5></a>
+            <a href="http://localhost:8000/empleados">
+                <h5 class="modal-close">&#10005;</h5>
+            </a>
             <div class="modal-content">
                 <h4>Empleado</h4>
                 <br>
@@ -161,7 +163,7 @@
                         </div>
 
                         <div class="input-field col s10">
-                            <input disabled value="Juan Perez" id="first_name" type="text" class="validate">
+                            <input disabled value="{{ Empleado.0.0 }}" id="first_name" type="text" class="validate">
                             <label class="active" for="first_name">Nombre Completo</label>
                         </div>
 
@@ -173,11 +175,11 @@
                             <p>Información:</p>
                         </div>
                         <div class="input-field col s5">
-                            <input disabled value="1023456785" id="first_name" type="number" class="validate">
+                            <input disabled value="{{ Empleado.0.1 }}" id="first_name" type="number" class="validate">
                             <label class="active" for="first_name">Documento</label>
                         </div>
                         <div class="input-field col s5">
-                            <input disabled id="fecha" type="text" class="datepicker">
+                            <input disabled value="{{ Empleado.0.2 }}" id="fecha" type="text" class="datepicker">
                             <label for="fecha">Fecha de Nacimiento</label>
                         </div>
                     </div>
@@ -185,7 +187,7 @@
 
                         <div class="input-field col s6">
                             <select disabled>
-                                <option value="">Cargo</option>
+                                <option value="" disabled selected>{{ Empleado.0.3 }}</option>
                                 <option value="1">Administrador</option>
                                 <option value="2">Gerente</option>
                                 <option value="3">Conductor</option>
@@ -194,7 +196,7 @@
                         </div>
                         <div class="input-field col s6">
                             <select disabled>
-                                <option value="">Sucursal</option>
+                                <option value="">{{ Empleado.0.4 }}</option>
                                 <option value="1">Sucursal 1</option>
                                 <option value="2">Sucursal 2</option>
                                 <option value="3">Sucursal 3</option>
@@ -212,10 +214,11 @@
                     <div class="row">
                         <div class="row">
                             <div class="col s6">
-                                <input id="editar" type="submit" value="Editar " class="btn btn-large">
+                                <a href="http://localhost:8000/empleados/{{ Empleado.0.5 }}/editar" id="editar"
+                                    class="btn-large">Editar</a>
                             </div>
                             <div class="col s6">
-                                <input id="borrar" type="submit" value="Eliminar " class="btn btn-large">
+                                <a href="#" id="borrar" class="btn-large">Eliminar</a>
                             </div>
                         </div>
                     </div>
@@ -267,23 +270,32 @@
                 }
             }
         }
+
+        document.getElementById("borrar").addEventListener("click", function () {
+            pregunta = confirm("¿Desea eliminar al empleado?");
+            if (pregunta == true) {
+                location.href = "http://localhost:8000/empleados/{{ Empleado.0.5 }}/eliminar";
+            } else {
+                location.href = "http://localhost:8000/empleados";
+            }
+        });
     </script>
     <script>
-            $(document).ready(function () {
-                $('.sidenav').sidenav();
-                $('.materialboxed').materialbox();
-                $('.parallax').parallax();
-                $('.tabs').tabs();
-                $('.modal').modal();
-                $('select').formSelect();
-                $('input#input_text, textarea#textarea2').characterCounter();
-                $('.datepicker').datepicker();
-                $(".datepicker").datepicker({
-                    yearRange: [2017, 2019],
-                    changeMonth: true,
-                    changeYear: true,
-                });
-                M.updateTextFields();
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.materialboxed').materialbox();
+            $('.parallax').parallax();
+            $('.tabs').tabs();
+            $('.modal').modal();
+            $('select').formSelect();
+            $('input#input_text, textarea#textarea2').characterCounter();
+            $('.datepicker').datepicker();
+            $(".datepicker").datepicker({
+                yearRange: [2017, 2019],
+                changeMonth: true,
+                changeYear: true,
             });
-        </script>
+            M.updateTextFields();
+        });
+    </script>
 </body>
