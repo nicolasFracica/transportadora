@@ -1,0 +1,63 @@
+.navbar-fixed {
+  align-items: center;
+}
+
+.caja1 {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+/*   TABLAS */
+
+.workspace {
+  position: relative;
+  top: 120%;
+  border-radius: 15px;
+  background: white;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.workspace > table {
+  border-radius: 10m !important;
+
+  -moz-border-radius: 6px;
+  background: white;
+}
+.workspace > table > thead {
+  background-color: rgba(58, 126, 79, 0.5) !important;
+}
+
+.workspace > table > tbody {
+  cursor: pointer;
+}
+
+table.highlight > tbody > tr:hover {
+  background-color: rgba(115, 250, 155, 0.5) !important;
+  color: white;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 15px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 15px;
+}
+
+/* bottom-left border-radius */
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+}
+
+/* bottom-right border-radius */
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 15px;
+}
+
+.row {
+  padding-left: 5%;
+  padding-right: 5%;
+}

@@ -1,0 +1,298 @@
+{% load static %}
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'crud/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'crud/modal.css' %}">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ver Vehículos</title>
+
+</head>
+
+<body>
+    <!--BARRA Y MENÚ-->
+    <div class="navbar-fixed">
+        <nav class="grey darken-4">
+            <div class="container section">
+                <div class="div-wrapper">
+                    <a href="#" class="brand-logo center">Ver Vehículos</a>
+                    <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                        <i class="material-icons">menu</i>
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="menu-side">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="../../static/images/bg1.jpg" alt="">
+                </div>
+                <a href="#">
+                    <img src="../../static/images/user.png" alt="" class="circle">
+                </a>
+                <a href="">
+                    <span class="name white-text">Sthefania Continelli</span>
+                </a>
+                <a href="">
+                    <span class="email white-text">sthefaniaco@trasportadora.com</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <a href="http://localhost:8000/">
+                <i class="material-icons">navigation</i>
+                Viajes
+            </a>
+            <ul>
+                <li>
+                    <a href="http://localhost:8000/viajes">
+                        <i class="material-icons">visibility</i>
+                        Ver Viajes
+                    </a>
+                </li>
+                <li>
+                    <a href="agregarViaje.html">
+                        <i class="material-icons">add_circle</i>
+                        Agregar Viaje
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="http://localhost:8000/empleados">
+                <i class="material-icons">face</i>
+                Empleados
+            </a>
+            <ul>
+                <li>
+                    <a href="">
+                        <i class="material-icons">add_circle</i>
+                        Agregar Empleado
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="">
+                <i class="material-icons">directions_bus</i>
+                Vehículos
+            </a>
+            <ul>
+                <li>
+                    <a href="">
+                        <i class="material-icons">add_circle</i>
+                        Agregar Vehículo
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="material-icons">show_chart</i>
+                        Estadísticas
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <section>
+        <div class="wrapper">
+            <!--Barra de Busqueda-->
+            <div class="caja1">
+                <div class="search-box">
+                    <input class="search-txt" type="text" name="" placeholder="Buscar ..." id="filterInput">
+                    <a class="search-btn" href="#">
+                    </a>
+                </div>
+            </div>
+
+            <!--DIV para la tabla-->
+            <div class="workspace">
+                <table class="striped green lighten-2 highlight">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Modelo</th>
+                            <th>Placas</th>
+                            <th>Mantenimiento</th>
+                            <!--Booleano-->
+                        </tr>
+                    </thead>
+
+                    <tbody id="names">
+                        {% for i in Lista %}
+                        <tr>
+                            <td><a href="#login" class="modal-trigger">{{ i.0 }}</a></td>
+                            <td><a href="#login" class="modal-trigger">{{ i.1 }}</a></td>
+                            <td><a href="#login" class="modal-trigger">{{ i.2 }}</a></td>
+                            <td><a href="#login" class="modal-trigger">{{ i.3 }}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <div id="login" class="modal">
+            <a href="http://localhost:8000/vehiculos"><h5 class="modal-close">&#10005;</h5></a>
+            <div class="modal-content">
+                <h4>Vehículo</h4>
+                <br>
+
+                <form class="col s12" action="#">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled value="{{ Vehiculo.0.0 }}" id="textarea2"/>
+                            <label class="active" for="textarea2">Modelo</label>
+                        </div>
+                        <div class="row">
+                            <div class="col s5">
+
+                                <div class="input-field col s6">
+                                    <input disabled value="{{ Vehiculo.0.1 }}" id="placas" type="text" class="validate"/>
+                                    <label class="active" for="placas">Placas</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p class="col s6">Tipo de Mantenimiento</p>
+                            {% ifequal Vehiculo.0.2 "Mantenimiento Correctivo" %}
+                            <div class="col s6">
+                                <label>
+                                    <input disabled name="group2" type="radio" checked />
+                                    <span>Correctivo</span>
+                                </label>
+                            </div>
+                            {% else %}
+                            <div class="col s6">
+                                <label>
+                                    <input disabled name="group2" type="radio"  />
+                                    <span>Correctivo</span>
+                                </label>
+                            </div>
+                            {% endifequal %}
+                            {% ifequal Vehiculo.0.2 "Mantenimiento Preventivo" %}
+                            <div class="col s6">
+                                <label>
+                                    <input disabled name="group2" type="radio" checked/>
+                                    <span>Preventivo</span>
+                                </label>
+                            </div>
+                            {% else %}
+                            <div class="col s6">
+                                <label>
+                                    <input disabled name="group2" type="radio" />
+                                    <span>Preventivo</span>
+                                </label>
+                            </div>
+                            {% endifequal %}
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="input-field col s6">
+                            <input disabled value="{{ Vehiculo.0.3 }}" id="drescipcion" type="text" class="validate"></textarea>
+                            <label class="active" for="descripcion">Descripcion del Mantenimiento</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input disabled value="{{ Vehiculo.0.4 }}" id="fecha" type="text" class="datepicker">
+                            <label for="fecha">Fecha de Manteniimiento</label>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <a href="http://localhost:8000/vehiculos/{{ Vehiculo.0.5 }}/editar" id="editar" class="btn-large">Editar</a>
+                </div>
+                <div class="col s6">
+                    <a href="#" id="borrar" class="btn-large">Eliminar</a>
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
+    </section>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+
+        //Filtro del buscador
+        let filterInput = document.getElementById('filterInput');
+        filterInput.addEventListener('keyup', filterNames);
+
+        function filterNames() {
+            let filterValue = document.getElementById('filterInput').value.toUpperCase();
+            let names = document.getElementById('names');
+            let li = names.querySelectorAll('tr');
+            console.log(li);
+            for (let i = 0; i < li.length; i++) {
+                let a = li[i].getElementsByTagName('td')[0];
+                let b = li[i].getElementsByTagName('td')[1];
+                let c = li[i].getElementsByTagName('td')[2];
+                let d = li[i].getElementsByTagName('td')[3];
+
+                if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    li[i].style.display = '';
+                }
+                else if (b.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    li[i].style.display = '';
+                }
+                else if (c.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    li[i].style.display = '';
+                }
+                else if (d.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    li[i].style.display = '';
+                }
+                else {
+                    li[i].style.display = 'none';
+                }
+            }
+        }
+
+        document.getElementById("borrar").addEventListener("click", function () {
+            pregunta = confirm("¿Desea eliminar el vehículo?");
+            if (pregunta == true) {
+                location.href = "http://localhost:8000/vehiculos/{{ Vehiculo.0.5 }}/eliminar";
+            } else {
+                location.href = "http://localhost:8000/vehiculos";
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.materialboxed').materialbox();
+            $('.parallax').parallax();
+            $('.tabs').tabs();
+            $('.modal').modal();
+            $('select').formSelect();
+            $('input#input_text, textarea#textarea2').characterCounter();
+            $('.datepicker').datepicker();
+            $(".datepicker").datepicker({
+                yearRange: [2017, 2019],
+                changeMonth: true,
+                changeYear: true,
+            });
+            M.updateTextFields();
+        });
+    </script>
+</body>
