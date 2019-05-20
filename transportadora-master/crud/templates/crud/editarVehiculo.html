@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <title>Editar Vehículo</title>
+</head>
+
+<body>
+
+    <!--NAVBAR-->
+    <header>
+        <div class="navbar-fixed">
+            <nav class="grey darken-4">
+                <div class="container section">
+                    <div class="div-wrapper">
+                        <a href="#" class="brand-logo center">Editar Vehículo</a>
+                        <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                            <i class="material-icons">menu</i>
+                        </a>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <ul class="sidenav" id="menu-side">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="../../static/images/bg1.jpg" alt="">
+                    </div>
+                    <a href="#">
+                        <img src="../../static/images/user.png" alt="" class="circle">
+                    </a>
+                    <a href="">
+                        <span class="name white-text">Sthefania Continelli</span>
+                    </a>
+                    <a href="">
+                        <span class="email white-text">sthefaniaco@trasportadora.com</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="http://localhost:8000">
+                    <i class="material-icons">navigation</i>
+                    Viajes
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/viajes">
+                            <i class="material-icons">visibility</i>
+                            Ver Viajes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8000/agregarViaje">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Viaje
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/empleados">
+                    <i class="material-icons">face</i>
+                    Empleados
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/agregarEmpleado">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Empleado
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/vehiculos">
+                    <i class="material-icons">directions_bus</i>
+                    Vehículos
+                </a>
+                <ul>
+                    <li>
+                    <li>
+                        <a href="http://localhost:8000/agregarVehiculo">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Vehículo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8000/estadistica">
+                            <i class="material-icons">show_chart</i>
+                            Estadísticas
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <section>
+        <div class="section container scrollspy" id="contact">
+            <div class="row">
+                <form class="col s12" action="http://localhost:8000/avisoEV/{{ Vehiculo.0.5 }}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ Vehiculo.0.1 }}" name="placas" id="placas" type="text" class="validate">
+                            <label for="placas">Placa</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input value="{{ Vehiculo.0.0 }}" name="modelo" id="modelo" type="text" class="validate">
+                            <label for="modelo">Modelo</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p class="col s6">Tipo de Mantenimiento</p>
+                            {% ifequal Vehiculo.0.2 "Mantenimiento Correctivo" %}
+                            <div class="col s6">
+                                <label>
+                                    <input id="correctivo" name="group2" type="radio" checked
+                                        value="Mantenimiento Correctivo"/>
+                                    <span>Correctivo</span>
+                                </label>
+                            </div>
+                            {% else %}
+                            <div class="col s6">
+                                <label>
+                                    <input name="group2" type="radio" />
+                                    <span>Correctivo</span>
+                                </label>
+                            </div>
+                            {% endifequal %}
+                            {% ifequal Vehiculo.0.2 "Mantenimiento Preventivo" %}
+                            <div class="col s6">
+                                <label>
+                                    <input id="preventivo" name="group2" type="radio" checked
+                                        value="Mantenimiento Preventivo"/>
+                                    <span>Preventivo</span>
+                                </label>
+                            </div>
+                            {% else %}
+                            <div class="col s6">
+                                <label>
+                                    <input name="group2" type="radio" />
+                                    <span>Preventivo</span>
+                                </label>
+                            </div>
+                            {% endifequal %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input value="{{ Vehiculo.0.3 }}" name="descripcion" id="textarea1" type="text"
+                                class="validate">
+                            <label for="textarea1">Descripción del Mantenimiento</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input value="{{ Vehiculo.0.4 |date:'Y-m-d' }}" name="fecha" class="datepicker" id="fecha_mantenimiento"
+                                type="text">
+                            <label for="fecha_mantenimiento">Fecha de Mantenimiento</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s13">
+                            <button class="btn">Enviar</button>
+                        </div>
+                        <div class="input-field col s13">
+                            <button class="btn grey" id="cancelar">Cancelar</button>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('.sidenav').sidenav();
+            $('.materialboxed').materialbox();
+            $('.parallax').parallax();
+            $('.tabs').tabs();
+            $('select').formSelect();
+            $('.datepicker').datepicker();
+            $(".datepicker").datepicker({
+                yearRange: [1945, 2019],
+                changeMonth: true,
+                changeYear: true,
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+    <script>/*
+        function actualizar() {
+            var text = document.getElementById("textarea1");
+            var mant1 = document.getElementById("correctivo").checked;
+            var mant2 = document.getElementById("preventivo").checked;
+            if (mant1 == true) {
+                text.value = "correción defectos en el vehiculo";
+            }
+            if (mant2 == true) {
+                text.value = " conservación de los vehiculos";
+            }
+        }
+            */
+
+        document.getElementById("cancelar").addEventListener("click", function (event) {
+            event.preventDefault()
+            location.href = "http://localhost:8000/empleados";
+        });
+    </script>
+</body>

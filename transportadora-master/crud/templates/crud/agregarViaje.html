@@ -1,0 +1,242 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <title>Agregar Viaje</title>
+</head>
+
+<body>
+
+    <!--NAVBAR-->
+    <header>
+        <div class="navbar-fixed">
+            <nav class="grey darken-4">
+                <div class="container section">
+                    <div class="div-wrapper">
+                        <a href="#" class="brand-logo center">Agregar Viaje</a>
+                        <a href="#" class="sidenav-trigger show-on-large" data-target="menu-side">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <ul class="sidenav" id="menu-side">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="../../static/images/bg1.jpg" alt="">
+                    </div>
+                    <a href="#" >
+                        <img src="../../static/images/user.png" alt="" class="circle">
+                    </a>
+                    <a href = "">
+                        <span class="name white-text">Sthefania Continelli</span>
+                    </a>
+                    <a href = "">
+                        <span class="email white-text">sthefaniaco@trasportadora.com</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="http://localhost:8000">
+                    <i class="material-icons">navigation</i>
+                    Viajes
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/viajes">
+                            <i class="material-icons">visibility</i>
+                            Ver Viajes
+                        </a>  
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Viaje
+                        </a>  
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/empleados">
+                    <i class="material-icons">face</i>
+                    Empleados
+                </a>
+                <ul>
+                    <li>
+                        <a href="http://localhost:8000/agregarEmpleado">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Empleado
+                        </a>  
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="http://localhost:8000/vehiculos">
+                    <i class="material-icons">directions_bus</i>
+                    Vehículos
+                </a>
+                <ul>
+                    <li>
+                    <li>
+                        <a href="http://localhost:8000/agregarVehiculo">
+                            <i class="material-icons">add_circle</i>
+                            Agregar Vehículo
+                        </a>  
+                    </li>
+                    <li>
+                            <a href="http://localhost:8000/estadistica">
+                                <i class="material-icons">show_chart</i>
+                                Estadísticas
+                            </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <section>
+        <div class="section container scrollspy" id="contact">
+            <div class="row">
+                <form class="col s12" action="http://localhost:8000/crearVi" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="ruta" name="ruta">
+                                <option value=""  selected>Seleccione una ruta</option>
+                                {% for i in Rutas %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="ruta">Ruta</label>
+                        </div>
+                        <div class="col s4">
+                            <p> </p>
+                        </div>
+                        <div class="col s0">
+                            <a href="">
+                                <i class="large material-icons">local_shipping</i>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="conductor" name="conductor">
+                                <option value="" selected>Seleccione un Empleado</option>
+                                {% for i in Empleados %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="conductor">Conductor</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="placa" name="placa">
+                                <option value="" selected>Seleccione un Vehiculo</option>
+                                {% for i in Vehiculos %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="placa">Placa del Vehículo</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input placeholder="Peso en kilogramos" id="peso" name="peso" type="number" class="validate">
+                            <label for="peso" class="active">Peso de la carga</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select name = "material">
+                                <option value="" disabled selected>Seleccione una carga</option>
+                                {% for i in Carga %}
+                                <option value="{{ i.0 }}">{{ i.0 }}</option>
+                                {% endfor %}
+                            </select>
+                            <label>Tipo de Carga</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="textarea2" type="text" class="validate" name="descripcion">
+                            <label for="textarea2" class="active">Descripción corta de la carga</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="inicio" type="text" class="datepicker" name="fecha">
+                            <label for="inicio" class="active">Fecha del viaje</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="horas de viaje" name="duracion" id="duracion" type="number" class="validate">
+                            <label for="duracion">Duración</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="$" name="costo" id="costo" type="number" class="validate">
+                            <label for="costo" class="active">Costo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select name="pago">
+                                <option value="" selected>Seleccione un medio</option>
+                                <option value="1">Tarjeta de Crédito</option>
+                                <option value="2">Tarjeta Débito</option>
+                                <option value="3">Efectivo</option>
+                                <option value="4">Cheque</option>
+                            </select>
+                            <label>Medio de Pago</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s13">
+                            <button class="btn">Enviar</button>
+                        </div>
+                        <div class="input-field col s13">
+                            <button class="btn grey">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            M.updateTextFields();
+            $('.sidenav').sidenav();
+            $('.materialboxed').materialbox();
+            $('.parallax').parallax();
+            $('.tabs').tabs();
+            $('select').formSelect();
+            $('input#input_text, textarea#textarea2').characterCounter();
+
+            $('.datepicker').datepicker();
+            $(".datepicker").datepicker({
+                yearRange: [1945, 2019],
+                changeMonth: true,
+                changeYear: true,
+                format: 'yyyy-mm-dd'
+                
+            });
+        });
+    </script>
+
+</body>
